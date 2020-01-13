@@ -1,0 +1,12 @@
+.todo-app {
+ border: 1px solid blue;
+}
+
+.todo-list {
+ cursor: pointer;
+}
+
+.todo-completed {
+ text-decoration: line-through;
+ color: red;
+}
