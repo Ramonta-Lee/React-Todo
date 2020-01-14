@@ -80,6 +80,7 @@ class App extends Component {
   handleSubmit = e => {
     e.preventDefault();
     this.addTodo(this.state.todoText);
+    e.target.reset();
   };
 
   // design `App` to be the parent component of your application.
@@ -89,7 +90,6 @@ class App extends Component {
       <div className="todo-app">
         <h2>Welcome to your Todo App!</h2>
         <TodoForm
-          addTodo={this.addTodo}
           saveList={this.saveList}
           handleChanges={this.handleChanges}
           handleSubmit={this.handleSubmit}
