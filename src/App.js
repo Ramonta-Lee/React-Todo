@@ -16,7 +16,6 @@ const todos = [
   }
 ];
 
-
 class App extends Component {
   // you will need a place to store your state in this component.
   constructor() {
@@ -24,7 +23,10 @@ class App extends Component {
     super();
     //initialize the state object
     this.state = {
-      todoList: localStorage.getItem("todoList") ? JSON.parse(localStorage.getItem("todoList")) : todos
+      todoList: localStorage.getItem("todoList")
+        ? JSON.parse(localStorage.getItem("todoList"))
+        : todos,
+      todoText: ""
     };
   }
 
@@ -58,20 +60,27 @@ class App extends Component {
 
   deleteTodo = () => {
     const nonCompletedTodos = this.state.todoList.filter(element => {
-     return element.completed === false
-    })
+      return element.completed === false;
+    });
     this.setState({
       todoList: nonCompletedTodos
-    })
+    });
   };
 
-  saveList(){
-    localStorage.setItem("TodoList", JSON.stringify(this.state.todoList))
+  saveList() {
+    localStorage.setItem("todoList", JSON.stringify(this.state.todoList));
   }
 
-  
+  handleChanges = e => {
+    this.setState({
+      todoText: e.target.value
+    });
+  };
 
- 
+  handleSubmit = e => {
+    e.preventDefault();
+    this.addTodo(this.state.todoText);
+  };
 
   // design `App` to be the parent component of your application.
   // this component is going to take care of state, and any change handlers you need to work with your state
@@ -79,7 +88,12 @@ class App extends Component {
     return (
       <div className="todo-app">
         <h2>Welcome to your Todo App!</h2>
-        <TodoForm addTodo={this.addTodo} saveList={this.saveList} />
+        <TodoForm
+          addTodo={this.addTodo}
+          saveList={this.saveList}
+          handleChanges={this.handleChanges}
+          handleSubmit={this.handleSubmit}
+        />
         <TodoList
           todos={this.state.todoList}
           toggleCompleted={this.toggleCompleted}
