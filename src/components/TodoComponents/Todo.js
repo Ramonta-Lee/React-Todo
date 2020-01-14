@@ -1,7 +1,7 @@
 import React from "react";
 
 const Todo = props => {
- console.log("props", props)
+  console.log("props", props);
   return (
     <div>
       <p

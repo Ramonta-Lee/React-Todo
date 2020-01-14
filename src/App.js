@@ -68,7 +68,7 @@ class App extends Component {
   };
 
   saveList() {
-    localStorage.setItem("todoList", JSON.stringify(this.state.todoList));
+    localStorage.setItem("todoList", JSON.stringify(todos));
   }
 
   handleChanges = e => {
@@ -81,6 +81,9 @@ class App extends Component {
     e.preventDefault();
     this.addTodo(this.state.todoText);
     e.target.reset();
+    this.setState({
+      todoText: ""
+    });
   };
 
   // design `App` to be the parent component of your application.
