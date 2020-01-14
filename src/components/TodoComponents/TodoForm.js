@@ -25,6 +25,7 @@ class TodoForm extends Component {
    <form onSubmit={this.handleSubmit}>
     <input type="text" name="todo" value={this.state.todoText} onChange={this.handleChanges} />
     <button>Add Todo</button>
+    <button onClick={this.props.saveList}>Save List</button>
    </form>
   );
  }

@@ -16,6 +16,7 @@ const todos = [
   }
 ];
 
+
 class App extends Component {
   // you will need a place to store your state in this component.
   constructor() {
@@ -23,7 +24,7 @@ class App extends Component {
     super();
     //initialize the state object
     this.state = {
-      todoList: todos
+      todoList: localStorage.getItem("todoList") ? JSON.parse(localStorage.getItem("todoList")) : todos
     };
   }
 
@@ -62,8 +63,13 @@ class App extends Component {
     this.setState({
       todoList: nonCompletedTodos
     })
-    
   };
+
+  saveList(){
+    localStorage.setItem("TodoList", JSON.stringify(this.state.todoList))
+  }
+
+  
 
  
 
@@ -73,7 +79,7 @@ class App extends Component {
     return (
       <div className="todo-app">
         <h2>Welcome to your Todo App!</h2>
-        <TodoForm addTodo={this.addTodo} />
+        <TodoForm addTodo={this.addTodo} saveList={this.saveList} />
         <TodoList
           todos={this.state.todoList}
           toggleCompleted={this.toggleCompleted}
