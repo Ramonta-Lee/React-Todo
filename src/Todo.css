@@ -1,0 +1,15 @@
+.todo-app {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ 
+}
+
+.todo-list {
+ cursor: pointer;
+}
+
+.todo-completed {
+ text-decoration: line-through;
+ color: red;
+}
